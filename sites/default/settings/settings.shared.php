@@ -712,6 +712,7 @@ $settings['container_yamls'][] = $app_root . '/' . $site_path . '/services.yml';
 $settings['trusted_host_patterns'] = [
   '^localhost$',
   '^127.0.0.1$',
+  '^software-inventory\.chemheritage\.org$',
   'example\.local$',
   'staging\.example\.com$',
   'example\.com$',
