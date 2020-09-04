@@ -9,7 +9,7 @@
 
 # Ignore core when managing all of a project's dependencies with Composer
 # including Drupal core.
-# core
+core
 
 # Ignore dependencies that are managed with Composer.
 # Generally you should only ignore the root vendor directory. It's important
@@ -20,6 +20,7 @@
 # Ignore configuration files that may contain sensitive information.
 sites/*/settings*.php
 sites/*/services*.yml
+sites/*/settings/settings.local.php
 
 # Ignore paths that contain user-generated content.
 sites/*/files
@@ -40,6 +41,3 @@ sites/simpletest
 
 # Ignore SimpleTest multi-site environment.
 # simpletest
-
-# Ignore push script
-push.sh
