@@ -1,0 +1,52 @@
+
+body {
+    font-family: 'abril-text' !important;
+}
+
+
+.site-branding {
+    font-family: 'abril-text';
+}
+
+.site-branding .site-branding__name a {
+    font-weight: 700;
+    font-size: 2.1875rem;
+    line-height: 1.42857em;
+}
+
+h1.title {
+    font-size: 2.5em;
+    font-family: 'abril-text';
+}
+
+.views-field-name,
+.views-field-title,
+.field--name-field-category,
+.field--name-field-uses {
+    font-family: "adelle-sans" !important;
+    font-size: 100%;
+}
+
+
+table tr td, table tr th {
+    padding: 0;
+}
+
+.views-field-name a,
+.views-field-title a,
+.field__item a {
+    text-decoration: none;
+    border-bottom: none;
+}
+
+tr {
+    background: none;
+}
+
+.views-field-title a {
+    font-size: 1.2em;
+}
+
+.feed-icons {
+    display:none;
+}

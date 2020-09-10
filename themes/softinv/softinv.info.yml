@@ -1,0 +1,18 @@
+name: Softinv
+type: theme
+description: This is just our local subtheme of Bartik, so we can mess around with it while keeping the defaults.
+core: 8.x
+core_version_requirement: ^8 || ^9
+# Defines the base theme
+base theme: bartik
+# Defines libraries group in which we can add css/js.
+libraries:
+  - softinv/global-styling
+# Regions
+regions:
+  header: Header
+  featured: Featured
+  content: Content
+  sidebar_first: First sidebar
+  sidebar_second: Second sidebar
+  footer: Footer
