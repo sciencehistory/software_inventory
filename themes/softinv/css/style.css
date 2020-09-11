@@ -50,3 +50,43 @@ tr {
 .feed-icons {
     display:none;
 }
+
+#header {
+  background-color: #050939;
+  background-image: -webkit-linear-gradient(top, #050939 0%, #050939 100%);
+  background-image: linear-gradient(to bottom, #050939 0%, #050939 100%);
+}
+
+a,
+.link {
+  color: #4bb0c7;
+}
+
+a:hover,
+a:focus,
+.link:hover,
+.link:focus {
+  color: #3ad2f5;
+}
+a:active,
+.link:active {
+  color: #62e1fd;
+}
+.sidebar .block {
+  border-color: #1f2534;
+  background-color: #ffffff;
+}
+.site-footer {
+  background: #050939;
+}
+.region-header,
+.region-header a,
+.region-header li a.is-active,
+.region-header .site-branding__text,
+.region-header .site-branding,
+.region-header .site-branding__text a,
+.region-header .site-branding a,
+.region-secondary-menu .menu-item a,
+.region-secondary-menu .menu-item a.is-active {
+  color: #a6e5d8;
+}
