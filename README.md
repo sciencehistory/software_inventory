@@ -1,4 +1,4 @@
-# Science History Institue software inventory
+# Science History Institute software inventory
 
 Our sofware inventory is an internal website to help us track which Institute colleagues are using what software.
 
