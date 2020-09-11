@@ -34,7 +34,7 @@ Create an empty MySQL database named chemheri_software_inventory, and a new MySQ
 Note the default database will soon be deleted and replaced with the contents of `software_inventory_from_production.sql`.
 
 ```
-CREATE DATABASE chemheri_software_inventoryCHARACTER SET utf8mb4COLLATE utf8mb4_unicode_ci;
+CREATE DATABASE chemheri_software_inventory CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 CREATE USER chemheri_software_inventory@localhost IDENTIFIED BY [SOME_PASSWORD];
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE,DROP, INDEX, ALTER, CREATE TEMPORARY TABLESON chemheri\_software\_inventory.* TO'chemheri_software_inventory'@'localhost';
 FLUSH PRIVILEGES;
