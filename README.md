@@ -76,8 +76,9 @@ Now, if you point your Apache server at the web directory, you should see the si
 
 ### Gotcha: MySQL collation
 
-Mac MySQL default collation is `utf8mb4_0900_ai_ci`
+MySQL's default collation is different on MacOS and Ubuntu.
 
-Ubuntu MySQL default collation is `utf8mb4_unicode_ci`.
+Mac: `utf8mb4_0900_ai_ci`
+Ubuntu: `utf8mb4_unicode_ci`.
 
-You may wish to run `sed -i ''  's/utf8mb4_0900_ai_ci/utf8mb4_unicode_ci/g' database.sql` or vice-versa when moving betwee
+You may wish to run `sed -i ''  's/utf8mb4_0900_ai_ci/utf8mb4_unicode_ci/g' database.sql` or vice-versa when moving databases these two environments.
