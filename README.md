@@ -41,7 +41,7 @@ CREATE USER chemheri_software_inventory@localhost IDENTIFIED BY [SOME_PASSWORD];
 GRANT SELECT, INSERT, UPDATE, DELETE, CREATE,
 DROP, INDEX, ALTER, CREATE TEMPORARY TABLES
 ON chemheri\_software\_inventory.*
-TO'chemheri_software_inventory'@'localhost';
+TO 'chemheri_software_inventory'@'localhost';
 
 FLUSH PRIVILEGES;
 
