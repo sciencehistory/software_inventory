@@ -1,16 +1,24 @@
-# Science History Instite software inventory
+# Science History Institue software inventory
 
 Our sofware inventory is an internal website to help us track which Institute colleagues are using what software.
 
 ## Installation
 
-This is a Drupal 9 site. To create a dev environment, you will need Composer, Drush, an Apache server, PHP >=7.3, and MySQL. (All these are easy to install via Brew, if you are working on a Mac.)
+This is a Drupal 9 site. This setup is largely taken from  https://matti.dev/post/setup-install-drupal-9-with-composer-and-drush. It assumes a basic knowledge of the Drupal ecosystem, and, considering how quickly Drupal changes, your mileage may vary.
 
-This setup is largely taken from  https://matti.dev/post/setup-install-drupal-9-with-composer-and-drush. It is not guaranteed to work (this is an internal website) but may save you some time.
+### Requirements
 
-Make sure you have a copy of the production database on hand at:
+1. Composer
+2. Drush
+3. Apache
+4. PHP >= 7.3
+5. MySQL
 
-software_inventory_from_production.sql;
+All these are easy to install via Brew, if you are working on a Mac.
+
+### Preliminaries
+
+Make sure you have a copy of the production database on hand at `software_inventory_from_production.sql`.
 
 Create an empty Drupal project:
 ```
@@ -18,8 +26,10 @@ composer create-project drupal/recommended-project software_inventory
 cd software_inventory
 composer require drush/drush:^10
 ```
-Create an empty MySQL database named chemheri_software_inventory:
 
+### Setting up the database
+
+Create an empty MySQL database named chemheri_software_inventory:
 
 ```
 CREATE DATABASE chemheri_software_inventoryCHARACTER SET utf8mb4COLLATE utf8mb4_unicode_ci;
@@ -39,21 +49,26 @@ git clone   web2sudo rsync -avz  web2/  web/rm -rf web2
 chmod -R 777 web/sites/default/files/
 ```
 
-At this point, your apache server should see a rudimentary Drupal site.
+At this point, your Apache server should see a rudimentary Drupal site if you point it at the `web` directory.
 
-Copy down the production database:
+
+### Set up the database.
+
+Make sure you have a copy of the production database on hand at `software_inventory_from_production.sql`.
 
 ```
-drop database chemheri_software_inventory;create database chemheri_software_inventory  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;use chemheri_software_inventory;source software_inventory_from_production.sql;
+drop database chemheri_software_inventory;
+create database chemheri_software_inventory  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+use chemheri_software_inventory;
+source software_inventory_from_production.sql;
 ```
+
 Clear the cache:
 
 ```
 drush cr
 ```
-Now point your Apache server at the web directory. You should see the site.
-
-You may want to write a script or two to automate copying up and down the files and the code from a2.
+Now, if you point your Apache server at the web directory, you should see the site.
 
 ### Gotcha: MySQL collation
 
