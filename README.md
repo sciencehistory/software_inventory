@@ -29,19 +29,24 @@ composer require drush/drush:^10
 
 ### Setting up the database
 
-Create an empty MySQL database named chemheri_software_inventory:
+Create an empty MySQL database named chemheri_software_inventory, and a new MySQL user and password that has admin rights for your new database.
+
+Note the default database will soon be deleted and replaced with the contents of `software_inventory_from_production.sql`.
 
 ```
 CREATE DATABASE chemheri_software_inventoryCHARACTER SET utf8mb4COLLATE utf8mb4_unicode_ci;
-Create a new MySQL user and password that has admin rights for your new database.
-CREATE USER chemheri_software_inventory@localhostIDENTIFIED BY [SOME_PASSWORD];GRANT SELECT, INSERT, UPDATE, DELETE, CREATE,DROP, INDEX, ALTER, CREATE TEMPORARY TABLESON chemheri\_software\_inventory.* TO'chemheri_software_inventory'@'localhost';
-FLUSH PRIVILEGES;show grants for 'chemheri_software_inventory'@'localhost';
+CREATE USER chemheri_software_inventory@localhost IDENTIFIED BY [SOME_PASSWORD];
+GRANT SELECT, INSERT, UPDATE, DELETE, CREATE,DROP, INDEX, ALTER, CREATE TEMPORARY TABLESON chemheri\_software\_inventory.* TO'chemheri_software_inventory'@'localhost';
+FLUSH PRIVILEGES;
+show grants for 'chemheri_software_inventory'@'localhost';
 ```
+
 Back on the command line:
 
 ```
 drush site-install standard  --db-url='mysql://chemheri_software_inventory:[DB_PASS]@localhost:3306/chemheri_software_inventory' --account-name=[ADMIN_USER] --account-pass=[ADMIN_PASSWORD]  --site-name=software_inventory  --site-mail=you@sciencehistory.org
 ```
+
 Set up your Git sandbox:
 
 ```
@@ -51,8 +56,7 @@ chmod -R 777 web/sites/default/files/
 
 At this point, your Apache server should see a rudimentary Drupal site if you point it at the `web` directory.
 
-
-### Set up the database.
+### Drop the factory-installed database and replace it with a copy of the production database.
 
 Make sure you have a copy of the production database on hand at `software_inventory_from_production.sql`.
 
