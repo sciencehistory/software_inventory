@@ -1,3 +1,9 @@
+# Science History Instite software inventory
+
+Our sofware inventory is an internal website to help us track which Institute colleagues are using what software.
+
+## Installation
+
 This is a Drupal 9 site. To create a dev environment, you will need Composer, Drush, an Apache server, PHP >=7.3, and MySQL. (All these are easy to install via Brew, if you are working on a Mac.)
 
 This setup is largely taken from  https://matti.dev/post/setup-install-drupal-9-with-composer-and-drush. It is not guaranteed to work (this is an internal website) but may save you some time.
@@ -49,7 +55,7 @@ Now point your Apache server at the web directory. You should see the site.
 
 You may want to write a script or two to automate copying up and down the files and the code from a2.
 
-Gotcha: MySQL collation
+### Gotcha: MySQL collation
 
 Mac MySQL default collation is `utf8mb4_0900_ai_ci`
 
