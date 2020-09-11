@@ -51,7 +51,12 @@ show grants for 'chemheri_software_inventory'@'localhost';
 Back on the command line:
 
 ```
-drush site-install standard  --db-url='mysql://chemheri_software_inventory:[DB_PASS]@localhost:3306/chemheri_software_inventory' --account-name=[ADMIN_USER] --account-pass=[ADMIN_PASSWORD]  --site-name=software_inventory  --site-mail=you@sciencehistory.org
+drush site-install standard  \
+--db-url='mysql://chemheri_software_inventory:[DB_PASS]@localhost:3306/chemheri_software_inventory' \
+--account-name=[ADMIN_USER] \
+--account-pass=[ADMIN_PASSWORD]  \
+--site-name=software_inventory  \
+--site-mail=you@sciencehistory.org
 ```
 
 Set up your Git sandbox:
