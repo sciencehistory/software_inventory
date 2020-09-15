@@ -1,8 +1,8 @@
 
+/* GENERAL LAYOUT AND BREANDING */
 body {
     font-family: 'abril-text' !important;
 }
-
 
 .site-branding {
     font-family: 'abril-text';
@@ -18,8 +18,6 @@ h1.title {
     font-size: 2.5em;
     font-family: 'abril-text';
 }
-
-
 
 .feed-icons {
     display:none;
@@ -50,7 +48,6 @@ h1.title {
   color: #a6e5d8;
 }
 
-
 .site-branding__logo img {
   margin-top: 1.2em;
   margin-right: 1em;
@@ -62,7 +59,6 @@ a,
 .link {
   color: #4bb0c7;
 }
-
 a:hover,
 a:focus,
 .link:hover,
@@ -76,7 +72,6 @@ a:active,
 
 
 /* VIEWS */
-
 .views-field,
 .field__label,
 .views-field-name,
@@ -84,10 +79,10 @@ a:active,
 .field-title,
 .field__item,
 .field--name-field-category,
-.field--name-field-uses,
+.node-type-list,
 li.menu-item {
     font-family: "adelle-sans" !important;
-    font-size: 1.3em;
+    font-size: 1.4em;
 }
 
 
@@ -97,20 +92,20 @@ li.menu-item {
 .field-title a,
 .field__item a,
 .field--name-field-category a,
-.field--name-field-uses a,
-li.menu-item a {
+li.menu-item a,
+.node-type-list a {
     text-decoration: none;
     border-bottom: none;
 }
 
 
-
-table tr td, table tr th {
-    padding-left: 1em;
+/* Hide revision info form */
+.entity-content-form-revision-information, .vertical-tabs {
+  display: none !important;
 }
 
+/* Tables: */
 tr {
     background: none;
 }
-
 
