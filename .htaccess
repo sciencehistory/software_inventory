@@ -2,6 +2,50 @@
 # Apache/PHP/Drupal settings:
 #
 
+# Send all traffic to https:
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule (.*) https://software-inventory.sciencehistory.org/$1 [R=301,L]
+
+# List of Institute IP addresses:
+Order Deny,Allow
+Deny from all
+Allow from 71.230.120.251
+#
+Allow from 38.66.81.239
+#
+Allow from 50.204.178.97
+Allow from 50.204.178.98
+Allow from 50.204.178.99
+Allow from 50.204.178.100
+Allow from 50.204.178.101
+Allow from 50.204.178.102
+Allow from 50.204.178.103
+Allow from 50.204.178.104
+Allow from 50.204.178.105
+Allow from 50.204.178.106
+Allow from 50.204.178.107
+Allow from 50.204.178.108
+Allow from 50.204.178.109
+Allow from 50.204.178.110
+#
+Allow from 173.161.142.1
+Allow from 173.161.142.2
+Allow from 173.161.142.3
+Allow from 173.161.142.4
+Allow from 173.161.142.5
+Allow from 173.161.142.6
+#
+Allow from 75.151.128.169
+Allow from 75.151.128.170
+Allow from 75.151.128.171
+Allow from 75.151.128.172
+Allow from 75.151.128.173
+Allow from 75.151.128.174
+#
+# Oh, and let Eddie in too:
+Allow from 68.81.92.66
+
 # Protect files and directories from prying eyes.
 <FilesMatch "\.(engine|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\.php)?|xtmpl|yml)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template|composer\.(json|lock)|web\.config)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig|\.save)$">
   <IfModule mod_authz_core.c>
