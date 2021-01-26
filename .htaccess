@@ -4,6 +4,7 @@
 
 # Send all traffic to https:
 RewriteEngine On
+RewriteCond %{HTTP_HOST} ^software-inventory\.sciencehistory\.org$ [NC]
 RewriteCond %{HTTPS} !=on
 RewriteRule (.*) https://software-inventory.sciencehistory.org/$1 [R=301,L]
 
@@ -29,22 +30,26 @@ Allow from 50.204.178.108
 Allow from 50.204.178.109
 Allow from 50.204.178.110
 #
-Allow from 173.161.142.1
-Allow from 173.161.142.2
-Allow from 173.161.142.3
-Allow from 173.161.142.4
-Allow from 173.161.142.5
-Allow from 173.161.142.6
-#
-Allow from 75.151.128.169
-Allow from 75.151.128.170
-Allow from 75.151.128.171
-Allow from 75.151.128.172
-Allow from 75.151.128.173
-Allow from 75.151.128.174
+Allow from 173.167.214.145
+Allow from 173.167.214.146
+Allow from 173.167.214.147
+Allow from 173.167.214.148
+Allow from 173.167.214.149
+Allow from 173.167.214.150
+Allow from 173.167.214.151
+Allow from 173.167.214.152
+Allow from 173.167.214.153
+Allow from 173.167.214.154
+Allow from 173.167.214.155
+Allow from 173.167.214.156
+Allow from 173.167.214.157
+Allow from 173.167.214.158
+
 #
 # Oh, and let Eddie in too:
 Allow from 68.81.92.66
+Allow from 127.0.0.1
+Allow from localhost
 
 # Protect files and directories from prying eyes.
 <FilesMatch "\.(engine|inc|install|make|module|profile|po|sh|.*sql|theme|twig|tpl(\.php)?|xtmpl|yml)(~|\.sw[op]|\.bak|\.orig|\.save)?$|^(\.(?!well-known).*|Entries.*|Repository|Root|Tag|Template|composer\.(json|lock)|web\.config)$|^#.*#$|\.php(~|\.sw[op]|\.bak|\.orig|\.save)$">
@@ -74,6 +79,9 @@ AddEncoding gzip svgz
 # PHP 7, Apache 1 and 2.
 <IfModule mod_php7.c>
   php_value assert.active                   0
+  php_value session.gc_maxlifetime       2000
+  php_value session.gc_probability          1
+  php_value session.gc_divisor              1
 </IfModule>
 
 # Requires mod_expires to be enabled.
