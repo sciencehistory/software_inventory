@@ -109,3 +109,7 @@ tr {
     background: none;
 }
 
+/* Names column: make it wider so long names don't wrap. */
+.view-all-users-with-expert-software .views-field-title {
+  width: 30%;
+}
