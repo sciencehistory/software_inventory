@@ -62,7 +62,9 @@ drush site-install standard  \
 Set up your Git sandbox:
 
 ```
-git clone   web2sudo rsync -avz  web2/  web/rm -rf web2
+git clone   web2sudo
+rsync -avz  web2/  web/
+rm -rf web2
 chmod -R 777 web/sites/default/files/
 ```
 

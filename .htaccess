@@ -1,4 +1,4 @@
-#
+
 # Apache/PHP/Drupal settings:
 #
 
@@ -80,6 +80,7 @@ AddEncoding gzip svgz
 <IfModule mod_php7.c>
   php_value assert.active                   0
   php_value session.gc_maxlifetime       2000
+  php_value session.cookie_lifetime         0
   php_value session.gc_probability          1
   php_value session.gc_divisor              1
 </IfModule>
