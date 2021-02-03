@@ -9,24 +9,22 @@ var JoinTables = (function () {
         return;
       }
 
-
-      if (!JoinTables.joinHash.hasOwnProperty(person.innerHTML)) {
-        JoinTables.joinHash[person.innerHTML] = { user: [], expert: [] };
+      if (!JoinTables.hashByUser.hasOwnProperty(person.innerHTML)) {
+        JoinTables.hashByUser[person.innerHTML] = { user: [], expert: [] };
       }
-      JoinTables.joinHash[person.innerHTML][array_label].push([software.innerHTML, software.href]);
+      JoinTables.hashByUser[person.innerHTML][array_label].push([software.innerHTML, software.href]);
 
-
-      if (!JoinTables.joinHash2.hasOwnProperty(software.innerHTML)) {
-        JoinTables.joinHash2[software.innerHTML] = { user: [], expert: [] };
+      if (!JoinTables.hashBySoftware.hasOwnProperty(software.innerHTML)) {
+        JoinTables.hashBySoftware[software.innerHTML] = { user: [], expert: [] };
       }
-      JoinTables.joinHash2[software.innerHTML][array_label].push([person.innerHTML, person.href]);
+      JoinTables.hashBySoftware[software.innerHTML][array_label].push([person.innerHTML, person.href]);
     });
   };
 
   return {
 
-    joinHash: {},
-    joinHash2: {},
+    hashByUser: {},
+    hashBySoftware: {},
 
     populateUsers: function () {
       rows = jQuery('div.view-users-hidden div.view-content table tbody tr');
@@ -39,10 +37,10 @@ var JoinTables = (function () {
 
 
     createAllUsersTable: function () {
-      jQuery('div.region-content').prepend('<div><table class="all_users_table"><tr><th>Person</th><th>Expert user of</th><th>Also uses</th></tr></table></div>');
-      jQuery.each(Object.keys(JoinTables.joinHash).sort(), function(k) {
+      jQuery('div.block-system-main-block div.content').append('<div><table class="all_users_table"><tr><th>Person</th><th>Expert user of</th><th>Also uses</th></tr></table></div>');
+      jQuery.each(Object.keys(JoinTables.hashByUser).sort(), function(k) {
         k = this;
-        v = JoinTables.joinHash[k];
+        v = JoinTables.hashByUser[k];
         user = [];
         expert = [];
         jQuery.each(v.user, function() {
@@ -51,16 +49,16 @@ var JoinTables = (function () {
         jQuery.each(v.expert, function() {
           expert.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
         });
-        jQuery('.all_users_table').append("<tr><td>" + k + "</td><td>" + user + "</td><td>" + expert.join (", ") + "</td></tr>");
+        jQuery('.all_users_table').append("<tr><td>" + k + "</td><td>" + user.join (", ") + "</td><td>" + expert.join (", ") + "</td></tr>");
       });
 
     }, // end function
 
     createAllSoftwareTable: function () {
-      jQuery('div.region-content').prepend('<div><table class="all_users_table"><tr><th>Software</th><th>Power users</th><th>Other users</th></tr></table></div>');
-      jQuery.each(Object.keys(JoinTables.joinHash2).sort(), function(k) {
+      jQuery('div.block-system-main-block div.content').append('<div><table class="all_software_table"><tr><th>Software</th><th>Power users</th><th>Other users</th></tr></table></div>');
+      jQuery.each(Object.keys(JoinTables.hashBySoftware).sort(), function(k) {
         k = this;
-        v = JoinTables.joinHash2[k];
+        v = JoinTables.hashBySoftware[k];
         user = [];
         expert = [];
         jQuery.each(v.user, function() {
@@ -69,7 +67,7 @@ var JoinTables = (function () {
         jQuery.each(v.expert, function() {
           expert.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
         });
-        jQuery('.all_users_table').append("<tr><td>" + k + "</td><td>" + expert.join (", ") + "</td><td>" + user.join(", ") + "</td></tr>");
+        jQuery('.all_software_table').append("<tr><td>" + k + "</td><td>" + expert.join (", ") + "</td><td>" + user.join(", ") + "</td></tr>");
       });
 
     } // end function
@@ -81,8 +79,15 @@ var JoinTables = (function () {
 
 /// On page load:
 jQuery( document ).ready(function() {
+  if (window.location.pathname != '/node/122' && window.location.pathname != '/node/123') {
+    return;
+  }
   JoinTables.populatePowerUsers();
   JoinTables.populateUsers();
-  // JoinTables.createAllUsersTable()
-  JoinTables.createAllSoftwareTable()
+  if (window.location.pathname == '/node/122') {
+    JoinTables.createAllSoftwareTable();
+  }
+  if (window.location.pathname == '/node/123') {
+    JoinTables.createAllUsersTable();
+  }
 });

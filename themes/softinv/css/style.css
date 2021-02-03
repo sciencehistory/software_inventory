@@ -113,3 +113,7 @@ tr {
 .view-all-users-with-expert-software .views-field-title {
   width: 30%;
 }
+
+div.block-views-blockusers-hidden-block-1, div.block-views-blockpower-users-hidden-block-1 {
+  display: none;
+}
