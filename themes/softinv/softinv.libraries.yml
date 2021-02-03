@@ -3,5 +3,10 @@ global-styling:
     component:
       css/style.css: {}
 
+
+global-scripts:
+  js:
+    js/softinv.js: {}
+
   dependencies:
     - core/jquery

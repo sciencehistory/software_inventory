@@ -8,6 +8,7 @@ base theme: bartik
 # Defines libraries group in which we can add css/js.
 libraries:
   - softinv/global-styling
+  - softinv/global-scripts
 # Regions
 regions:
   header: Header
