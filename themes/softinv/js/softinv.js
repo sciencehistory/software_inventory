@@ -9,6 +9,9 @@ var JoinTables = (function () {
         return;
       }
 
+      JoinTables.userUrls[person.innerHTML]       = person.href;
+      JoinTables.softwareUrls[software.innerHTML] = software.href;
+
       if (!JoinTables.hashByUser.hasOwnProperty(person.innerHTML)) {
         JoinTables.hashByUser[person.innerHTML] = { user: [], expert: [] };
       }
@@ -25,6 +28,8 @@ var JoinTables = (function () {
 
     hashByUser: {},
     hashBySoftware: {},
+    userUrls: {},
+    softwareUrls: {},
 
     populateUsers: function () {
       rows = jQuery('div.view-users-hidden div.view-content table tbody tr');
@@ -39,8 +44,8 @@ var JoinTables = (function () {
     createAllUsersTable: function () {
       jQuery('div.block-system-main-block div.content').append('<div><table class="all_users_table"><tr><th>Person</th><th>Expert user of</th><th>Also uses</th></tr></table></div>');
       jQuery.each(Object.keys(JoinTables.hashByUser).sort(), function(k) {
-        k = this;
-        v = JoinTables.hashByUser[k];
+        v = JoinTables.hashByUser[this];
+        user_with_url = '<a href="' + JoinTables.userUrls[this] + '">' + this + '</a>'
         user = [];
         expert = [];
         jQuery.each(v.user, function() {
@@ -49,7 +54,7 @@ var JoinTables = (function () {
         jQuery.each(v.expert, function() {
           expert.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
         });
-        jQuery('.all_users_table').append("<tr><td>" + k + "</td><td>" + user.join (", ") + "</td><td>" + expert.join (", ") + "</td></tr>");
+        jQuery('.all_users_table').append("<tr><td>" + user_with_url + "</td><td>" + user.join (", ") + "</td><td>" + expert.join (", ") + "</td></tr>");
       });
 
     }, // end function
@@ -57,8 +62,8 @@ var JoinTables = (function () {
     createAllSoftwareTable: function () {
       jQuery('div.block-system-main-block div.content').append('<div><table class="all_software_table"><tr><th>Software</th><th>Power users</th><th>Other users</th></tr></table></div>');
       jQuery.each(Object.keys(JoinTables.hashBySoftware).sort(), function(k) {
-        k = this;
-        v = JoinTables.hashBySoftware[k];
+        software_with_url = '<a href="' + JoinTables.softwareUrls[this] + '">' + this + '</a>';
+        v = JoinTables.hashBySoftware[this];
         user = [];
         expert = [];
         jQuery.each(v.user, function() {
@@ -67,7 +72,7 @@ var JoinTables = (function () {
         jQuery.each(v.expert, function() {
           expert.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
         });
-        jQuery('.all_software_table').append("<tr><td>" + k + "</td><td>" + expert.join (", ") + "</td><td>" + user.join(", ") + "</td></tr>");
+        jQuery('.all_software_table').append('<tr><td>' + software_with_url + '</td><td>' + expert.join (", ") + "</td><td>" + user.join(", ") + "</td></tr>");
       });
 
     } // end function
