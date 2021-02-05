@@ -40,46 +40,42 @@ var JoinTables = (function () {
       populate(rows, 'expert');
     },
 
+    container: function() {
+      return jQuery('div.block-system-main-block div.content').first();
+    },
+
+    // Takes an array of the form [[text, URL], [text, URL], ...]
+    // and returns an string of comma-separated HTML links.
+    concatenatedLinks: function(input_array) {
+      var result = [];
+      jQuery.each(input_array, function() { // input_array was v.user
+        result.push('<a href="' + this[1]+'">' + this[0]+ '<a>');
+      });
+      return result.join(", ");
+    },
 
     createAllUsersTable: function () {
-      jQuery('div.block-system-main-block div.content').append('<div><table class="all_users_table"><tr><th>Person</th><th>Expert user of</th><th>Also uses</th></tr></table></div>');
+      JoinTables.container().append('<div><table class="joinTable"><tr><th width="30%">Person</th><th width="30%" >Power user of</th><th width="30%">Also uses</th></tr></table></div>');
       jQuery.each(Object.keys(JoinTables.hashByUser).sort(), function(k) {
         v = JoinTables.hashByUser[this];
-        user_with_url = '<a href="' + JoinTables.userUrls[this] + '">' + this + '</a>'
-        user = [];
-        expert = [];
-        jQuery.each(v.user, function() {
-          user.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
-        });
-        jQuery.each(v.expert, function() {
-          expert.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
-        });
-        jQuery('.all_users_table').append("<tr><td>" + user_with_url + "</td><td>" + user.join (", ") + "</td><td>" + expert.join (", ") + "</td></tr>");
-      });
-
+        userWithUrl = '<a href="' + JoinTables.userUrls[this] + '">' + this + '</a>';
+        userLinks = JoinTables.concatenatedLinks(v.user);
+        expertLinks = JoinTables.concatenatedLinks(v.expert);
+        jQuery('.joinTable').append('<tr><td class="views-field">' + userWithUrl + '</td><td class="views-field">' + userLinks + '</td><td class="views-field">' + expertLinks + '</td></tr>');
+      }); // end loop over table
     }, // end function
 
     createAllSoftwareTable: function () {
-      jQuery('div.block-system-main-block div.content').append('<div><table class="all_software_table"><tr><th>Software</th><th>Power users</th><th>Other users</th></tr></table></div>');
+      JoinTables.container().append('<div><table class="joinTable"><tr><th width="30%">Software</th><th width="30%">Power users</th><th width="30%">Other users</th></tr></table></div>');
       jQuery.each(Object.keys(JoinTables.hashBySoftware).sort(), function(k) {
-        software_with_url = '<a href="' + JoinTables.softwareUrls[this] + '">' + this + '</a>';
         v = JoinTables.hashBySoftware[this];
-        user = [];
-        expert = [];
-        jQuery.each(v.user, function() {
-          user.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
-        });
-        jQuery.each(v.expert, function() {
-          expert.push('<a href="' + this[1]+'"> ' + this[0]+ '<a>');
-        });
-        jQuery('.all_software_table').append('<tr><td>' + software_with_url + '</td><td>' + expert.join (", ") + "</td><td>" + user.join(", ") + "</td></tr>");
-      });
-
+        softwareWithUrl = '<a href="' + JoinTables.softwareUrls[this] + '">' + this + '</a>';
+        userLinks = JoinTables.concatenatedLinks(v.user);
+        expertLinks = JoinTables.concatenatedLinks(v.expert);
+        jQuery('.joinTable').append('<tr><td class="views-field">' + softwareWithUrl + '</td><td class="views-field">' + expertLinks + '</td><td class="views-field">' + userLinks + "</td></tr>");
+      }); // end loop over table
     } // end function
-
-
   }; // end return value
-
 })(); // end "module"
 
 /// On page load:
