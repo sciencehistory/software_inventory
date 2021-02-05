@@ -51,7 +51,7 @@ var JoinTables = (function () {
       jQuery.each(input_array, function() { // input_array was v.user
         result.push('<a href="' + this[1]+'">' + this[0]+ '<a>');
       });
-      return result.join(", ");
+      return result.join("; ");
     },
 
     createAllUsersTable: function () {
