@@ -61,7 +61,7 @@ var JoinTables = (function () {
         userWithUrl = '<a href="' + JoinTables.userUrls[this] + '">' + this + '</a>';
         userLinks = JoinTables.concatenatedLinks(v.user);
         expertLinks = JoinTables.concatenatedLinks(v.expert);
-        jQuery('.joinTable').append('<tr><td class="views-field">' + userWithUrl + '</td><td class="views-field">' + userLinks + '</td><td class="views-field">' + expertLinks + '</td></tr>');
+        jQuery('.joinTable').append('<tr><td class="views-field">' + userWithUrl + '</td><td class="views-field">' + expertLinks + '</td><td class="views-field">' +  userLinks + '</td></tr>');
       }); // end loop over table
     }, // end function
 
