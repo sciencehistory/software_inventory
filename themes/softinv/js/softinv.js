@@ -1,3 +1,9 @@
+//
+// Note: after changing this code you might need to go to
+// admin/config/development/performance
+// and manually "Clear all caches" for the changes to take effect.
+//
+//
 var JoinTables = (function () {
   // private
   populate = function(rows, array_label) {
