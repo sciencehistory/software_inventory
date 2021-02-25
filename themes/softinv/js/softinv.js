@@ -6,41 +6,39 @@
 //
 var JoinTables = (function () {
   // private
-  populate = function(rows, array_label) {
+  populate = function(rows, array_label, softwareRow, personRow) {
     var person, software;
     rows.each(function( index ) {
-      person = jQuery(this).find('td a')[0]
-      software = jQuery(this).find('td a')[1];
+    if (personRow != null) {
+      person = jQuery(this).find('td a')[personRow];
+    }
+    software = jQuery(this).find('td a')[softwareRow];
 
+    if (person != undefined) {
       // Add the person to the list of people
       JoinTables.userUrls[person.innerHTML]       = person.href;
-
-      // Add the software to the list of all software URLS
-      if (software != undefined) {
-        JoinTables.softwareUrls[software.innerHTML] = software.href;
-      }
-
       // Add a new user hashByUser, with empty arrays storing the software they know how to use
       if (!JoinTables.hashByUser.hasOwnProperty(person.innerHTML)) {
         JoinTables.hashByUser[person.innerHTML] = { user: [], expert: [] };
       }
+    }
 
-
-      if (software != undefined) {
-        // Add the software to that user's hashByUser
-        JoinTables.hashByUser[person.innerHTML][array_label].push([software.innerHTML, software.href]);
-
-        // Add a new software to hashBySoftware, with empty arrays storing the users of that software
-        if (!JoinTables.hashBySoftware.hasOwnProperty(software.innerHTML)) {
-          JoinTables.hashBySoftware[software.innerHTML] = { user: [], expert: [] };
-        }
-
+    if (software != undefined) {
+      // Add the software to the list of all software URLS
+      JoinTables.softwareUrls[software.innerHTML] = software.href;
+      // Add a new software to hashBySoftware, with empty arrays storing the users of that software
+      if (!JoinTables.hashBySoftware.hasOwnProperty(software.innerHTML)) {
+        JoinTables.hashBySoftware[software.innerHTML] = { user: [], expert: [] };
+      }
+      if (person != undefined) {
         // Add the user to the list of people who know how to use this software.
         JoinTables.hashBySoftware[software.innerHTML][array_label].push([person.innerHTML, person.href]);
+        // Add the software to that user's hashByUser
+        JoinTables.hashByUser[person.innerHTML][array_label].push([software.innerHTML, software.href]);
       }
-
-    });
-  };
+    }
+  });
+};
 
   return {
 
@@ -49,13 +47,19 @@ var JoinTables = (function () {
     userUrls: {},
     softwareUrls: {},
 
+    populateSoftware: function () {
+      rows = jQuery('div.view-all-software div.view-content table tbody tr');
+      populate(rows, null, 0, null);
+    },
+
     populateUsers: function () {
       rows = jQuery('div.view-users-hidden div.view-content table tbody tr');
-      populate(rows, 'user');
+      populate(rows, 'user', 1, 0);
     },
+
     populatePowerUsers: function () {
       rows = jQuery('div.view-power-users-hidden div.view-content table tbody tr');
-      populate(rows, 'expert');
+      populate(rows, 'expert', 1, 0);
     },
 
     container: function() {
@@ -101,8 +105,11 @@ jQuery( document ).ready(function() {
   if (window.location.pathname != '/node/122' && window.location.pathname != '/node/123') {
     return;
   }
+
+  JoinTables.populateSoftware();
   JoinTables.populatePowerUsers();
   JoinTables.populateUsers();
+
   if (window.location.pathname == '/node/122') {
     JoinTables.createAllSoftwareTable();
   }
