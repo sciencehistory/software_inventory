@@ -11,43 +11,39 @@ RewriteRule (.*) https://software-inventory.sciencehistory.org/$1 [R=301,L]
 # List of Institute IP addresses:
 Order Deny,Allow
 Deny from all
-Allow from 71.230.120.251
-#
-Allow from 38.66.81.239
-#
-Allow from 50.204.178.97
-Allow from 50.204.178.98
-Allow from 50.204.178.99
-Allow from 50.204.178.100
-Allow from 50.204.178.101
-Allow from 50.204.178.102
-Allow from 50.204.178.103
-Allow from 50.204.178.104
-Allow from 50.204.178.105
-Allow from 50.204.178.106
-Allow from 50.204.178.107
-Allow from 50.204.178.108
-Allow from 50.204.178.109
-Allow from 50.204.178.110
-#
-Allow from 173.167.214.145
-Allow from 173.167.214.146
-Allow from 173.167.214.147
-Allow from 173.167.214.148
-Allow from 173.167.214.149
-Allow from 173.167.214.150
-Allow from 173.167.214.151
-Allow from 173.167.214.152
-Allow from 173.167.214.153
-Allow from 173.167.214.154
-Allow from 173.167.214.155
-Allow from 173.167.214.156
-Allow from 173.167.214.157
-Allow from 173.167.214.158
 
-#
-# Oh, and let Eddie in too:
+# Chuck
+Allow from 71.230.120.251
+# Eddie work
+Allow from 38.66.81.239
+# Eddie home
 Allow from 68.81.92.66
+
+# Office:
+# 38.66.81.239
+# 173.167.214.145 -- 173.167.214.158
+# 50.204.178.97   -- 50.204.178.110
+# 173.161.142.1   -- 173.161.142.6
+
+# https://www.ipaddressguide.com/cidr
+
+Allow from 173.167.214.145/32
+Allow from 173.167.214.146/31
+Allow from 173.167.214.148/30
+Allow from 173.167.214.152/30
+Allow from 173.167.214.156/31
+Allow from 173.167.214.158/32
+Allow from 50.204.178.97/32
+Allow from 50.204.178.98/31
+Allow from 50.204.178.100/30
+Allow from 50.204.178.104/30
+Allow from 50.204.178.108/31
+Allow from 50.204.178.110/32
+Allow from 173.161.142.1/32
+Allow from 173.161.142.2/31
+Allow from 173.161.142.4/31
+Allow from 173.161.142.6/32
+
 Allow from 127.0.0.1
 Allow from localhost
 
